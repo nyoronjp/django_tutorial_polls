@@ -1,0 +1,24 @@
+{% extends "polls/base.html" %}
+{% block title %}Poll List{% endblock %}
+{% block page_title %}Poll List{% endblock %}
+
+{% load static %}
+
+{% block body%}
+{% if latest_question_list %}
+    <div>
+        {% for question in latest_question_list %}
+            <div class="card" style="width: 13rem;float:left;margin:0.5rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ question.question_text }}</h5>
+                    <div class="text-right">
+                        <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary">Poll</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
+{% endblock %}
